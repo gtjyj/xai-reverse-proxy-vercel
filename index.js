@@ -10,6 +10,10 @@ app.use(cors());
 app.use('/', createProxyMiddleware({
   target: 'https://api.x.ai',
   changeOrigin: true,
+  // 设置代理服务器响应超时时间为 5000 毫秒（5 秒）
+  proxyTimeout: 1000*60*60, 
+  // 设置客户端请求超时时间为 5000 毫秒（5 秒）
+  proxyTimeout: 1000*60*60, 
   onProxyReq: (proxyReq, req) => {
     // 转发原始 Authorization 头
     if (req.headers.authorization) {
