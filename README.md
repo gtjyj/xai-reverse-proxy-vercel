@@ -30,14 +30,26 @@
 	记录值: cname.vercel-dns.com
 - 等待 DNS 解析生效（通常需要几分钟到几小时）
 
-### 4. 使用示例
+### 4. 配置运行超时时间(非常重要)
+- 在 Vercel 控制台进入你的项目
+- 点击 "Settings" -> "Functions"
+- 找到 "Function Max Duration", 修改为60秒（免费用户最长60秒，付费用户可以设置长一些）
+- 由于默认10秒，不修改的话会导致ai给你回复被中断
+
+### 5. 修改运行node版本（重要）
+- 在 Vercel 控制台进入你的项目
+- 点击 "Settings" -> "Build and Deployment"
+- 找到 "Node.js Version", 修改为node18
+- 否则可能会出现一些运行错误
+  
+### 6. 使用示例
 
 ```bash
 curl https://你的域名/v1/chat/completions \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer your-xai-api-key" \
+-H "Authorization: Bearer 你的token" \
 -d '{
- "model": "grok-beta",
+ "model": "grok-3",
  "messages": [{"role": "user", "content": "Hello!"}]
 }'
 ```
